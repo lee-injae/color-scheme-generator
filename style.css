@@ -1,0 +1,15 @@
+body {
+    margin: 0;
+}
+
+.color-bar {
+    height: 300px;
+    /* width: 10%; */
+    /* background-color: blue; */
+
+}
+
+.colors-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
