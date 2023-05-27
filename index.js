@@ -1,9 +1,12 @@
-
 const url = "https://www.thecolorapi.com"
 const schemeEndpoint = "/scheme"
 const colorEndpoint = "color"
-const startColorHex = "F55A5A"
+const selectElement = document.getElementById("colors");
+const getColorBtn = document.getElementById("get-color-btn")
 const schemesArr = ["monochrome", "monochrome-dark", "monochrome-light", "analogic", "complement", "analogic-complement", "triad", "quad"]
+
+const startColorHex = "800080"
+let selectedSchemeName = ""
 
 function distributeSchemes(arr){
     let htmlOption = ""
@@ -17,41 +20,27 @@ function distributeSchemes(arr){
 
 distributeSchemes(schemesArr)
 
-
-// document.addEventListener("click", (e) => {
-//     if (e.target.id = "get-color-btn"){
-//         handleGetColorSchemeBtn(e)
-//     }
-//     else if (e.target.id="monochrome"){
-//         handleMonochrome()
-//     }
-// })
-
-
-const selectElement = document.getElementById("colors");
-
 selectElement.addEventListener('change', function(e) {
-    const selectedSchemeName = e.target.value
+    selectedSchemeName = e.target.value
     console.log("selectedName: ", selectedSchemeName)
-    getSchemeColors(selectedSchemeName)
-});
+})
 
+getColorBtn.addEventListener("click", e => { 
+    handleGetColorScheme(e, selectedSchemeName)})
 
-
-function handleGetColorSchemeBtn(string){
-  fetch(`${url}${schemeEndpoint}?hex=${startColorHex}&mode=${string}`)
-    .then(res => res.json())
-    .then(data => {
-        // data.colors is an array of five color objects with hexcode, rgb values nested as objects
-        console.log(data.colors)
-        renderColors(data.colors)
-    })
+function handleGetColorScheme(e, string){
+    e.preventDefault()
+    fetch(`${url}${schemeEndpoint}?hex=${startColorHex}&mode=${string}`)
+        .then(res => res.json())
+        .then(data => {
+            // data.colors is an array of five color objects with hexcode, rgb values nested as objects
+            renderColors(data.colors)
+        })
 }
-
 
 function renderColors(arr){
     let html = ""
-    arr.forEach( (colorObj) => {
+    arr.forEach( colorObj => {
         html += `
             <div class="color-bar" 
                 style="background: ${colorObj.hex.value};">
@@ -62,35 +51,6 @@ function renderColors(arr){
 }
 
 
-// function renderColors(arr) {
-//     let html = "";
-//     arr.forEach((colorObj) => {
-//       html += `
-//         <div class="color-bar" style="background: ${colorObj.hex.value};"></div>
-//       `;
-//     });
-//     console.log("html: ", html);
-//     document.getElementById("colors-container").innerHTML = html;
-//   }
-  
-// function handleGetColorSchemeBtn(e){
-//     e.preventDefault()
-
-//     fetch(`${url}${schemeEndpoint}?hex=${startColorHex}&mode=monochrome`)
-//     .then(res => res.json())
-//     .then(data => {
-//         console.log("data-colors: ", data.colors)
-//         let html = ""
-
-//         for (color of data.colors){
-//             html = `
-//                 <div class="color-bar" style="background: ${color.hex.value};"></div>
-//             `
-//             console.log(html)
-//             document.getElementById("colors-container").innerHTML += html
-//         }
-//     })
-// }
 
 
 
