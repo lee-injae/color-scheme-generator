@@ -2,12 +2,17 @@
 <head>
     <title>Color Scheme Generator</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <form>
-        <input type="color" value="#F55A5A"></input>
-        <select id="colors" name="colors"></select>
+        <input id="start-color" type="color" value="#F55A5A"></input>
+        <select id="colors" name="colors">
+            <!-- <option id=${scheme} value="${scheme}">${scheme}</option> -->
+        </select>
         <button id="get-color-btn">Get color scheme</button>
     </form>
     <div class="colors-container" id="colors-container">
@@ -17,8 +22,8 @@
         <div class="color-bar"></div>
         <div class="color-bar"></div> -->
     </div>
-    <footer>
-
+    <footer id="footer">
+        <!--<div id="footer-${colorObj.hex.value}">${colorObj.hex.value}</div> -->
     </footer>
     <script src="index.js"></script>
 </body>
