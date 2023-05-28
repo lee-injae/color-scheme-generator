@@ -45,12 +45,15 @@ function renderColorsHtml(arr){
 
         html += `
         <div class="color-bar" 
-            style="background: ${colorObj.hex.value};">
+            style="background: ${colorObj.hex.value};"
+            onclick="copyToClipboard('${colorObj.hex.value}')">
         </div>
         `
-
         footerDivs += `
-            <div id="footer-${colorObj.hex.value}">${colorObj.hex.value}</div>
+            <div class="color-hex" id="footer-${colorObj.hex.value}"
+                onclick="copyToClipboard('${colorObj.hex.value}')">
+                ${colorObj.hex.value}
+            </div>
         `
     });
     document.getElementById("colors-container").innerHTML = html
@@ -73,12 +76,21 @@ function distributeSchemeOptions(arr){
 function assignStartColor(string){
     document.getElementById("start-color").value = "#" + string
 }
-    
-    
-    
+   
+
+
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text)
+      .then(() => {
+        console.log("Text copied to clipboard: ", text);
+      })
+      .catch((error) => {
+        console.error("Error copying text to clipboard: ", error);
+      });
+  }
+
+
 assignStartColor(startColorHex)
 getColors("monochrome")
 distributeSchemeOptions(schemesArr)
-
-
 

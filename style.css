@@ -79,3 +79,24 @@ footer {
     padding-top:1em;
 }
 
+.color-hex, .color-bar {
+    cursor: pointer;
+}
+
+@keyframes copyAnimation {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  /* Style when the button is clicked */
+  .color-hex:active,
+  .color-bar:active {
+    animation: copyAnimation 1s;
+  }
