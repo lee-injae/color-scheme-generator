@@ -94,3 +94,5 @@ assignStartColor(startColorHex)
 getColors("monochrome")
 distributeSchemeOptions(schemesArr)
 
+
+
